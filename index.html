@@ -1,415 +1,562 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="kmr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kurdish Latin Keyboard Layout</title>
     <style>
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-        header {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            padding: 40px 20px;
-            text-align: center;
-            border-bottom: 1px solid #334155;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            color: #38bdf8;
-            font-weight: 700;
-        }
-        header p {
-            margin: 10px 0 0 0;
-            color: #94a3b8;
-            font-size: 1.1rem;
-        }
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        .download-section {
-            text-align: center;
-            margin-bottom: 50px;
-            background: #1e293b;
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid #475569;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-        .action-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-bottom: 15px;
-        }
-        .btn-download, .btn-github {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 16px 32px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-        .btn-download {
-            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-            color: white;
-            box-shadow: 0 4px 14px rgba(3, 105, 161, 0.4);
-        }
-        .btn-download:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(3, 105, 161, 0.6);
-            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
-        }
-        .btn-github {
-            background: #334155;
-            color: white;
-            border: 1px solid #475569;
-        }
-        .btn-github:hover {
-            background: #475569;
-            transform: translateY(-2px);
-        }
-        .download-section p {
-            margin: 0;
-            color: #cbd5e1;
-            font-size: 0.95rem;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 1.8rem;
-            color: #f1f5f9;
-            margin-bottom: 30px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: #38bdf8;
-            border-radius: 2px;
-        }
-        
-        /* Interactive Virtual Keyboard Representation */
-        .keyboard-wrapper {
-            background: #1e293b;
-            padding: 30px 20px;
-            border-radius: 16px;
-            border: 1px solid #334155;
-            margin-bottom: 5px;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
-            overflow-x: auto;
-        }
-        .keyboard {
-            min-width: 900px;
-            margin: 0 auto;
-            display: block;
-        }
-        .keyboard-row {
-            display: table;
-            width: 100%;
-            table-layout: fixed;
-            margin-bottom: 8px;
-        }
-        .key {
-            display: table-cell;
-            background: #334155;
-            border: 1px solid #1e293b;
-            color: #f1f5f9;
-            text-align: center;
-            vertical-align: middle;
-            height: 54px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 1.05rem;
-            box-shadow: 0 2px 0 #0f172a;
-            position: relative;
-        }
-        .key.special-kurd {
-            background: linear-gradient(135deg, #0369a1 0%, #1e3a8a 100%);
-            border: 1px solid #38bdf8;
-            color: #38bdf8;
-            font-size: 1.2rem;
-            text-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
-        }
-        .key .eng-hint {
-            position: absolute;
-            top: 4px;
-            left: 6px;
-            font-size: 0.75rem;
-            color: #94a3b8;
-            font-weight: normal;
-            font-family: monospace;
-        }
-        .key.special-kurd .eng-hint {
-            color: #bae6fd;
-            opacity: 0.8;
-        }
-        .key.wide-2 { width: 60px; }
-        .key.wide-3 { width: 85px; }
-        .key.wide-4 { width: 100px; }
-        .key.wide-5 { width: 125px; }
-        .key.space { width: 320px; background: #475569; }
-        .key .top-char {
-            display: block;
-            font-size: 0.8rem;
-            color: #94a3b8;
-            margin-bottom: 2px;
-        }
-        .key .bottom-char {
-            display: block;
-        }
-        .key.special-kurd .top-char {
-            color: #f1f5f9;
-        }
-        .keyboard-legend {
-            text-align: center;
-            margin: 15px 0 50px 0;
-            font-size: 0.95rem;
-            color: #94a3b8;
-        }
-        .legend-color {
-            display: inline-block;
-            width: 15px;
-            height: 15px;
-            background: linear-gradient(135deg, #0369a1 0%, #1e3a8a 100%);
-            border: 1px solid #38bdf8;
-            border-radius: 4px;
-            margin-right: 6px;
-            vertical-align: middle;
-        }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+      }
+      header {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        padding: 40px 20px;
+        text-align: center;
+        border-bottom: 1px solid #334155;
+      }
+      header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+        color: #38bdf8;
+        font-weight: 700;
+      }
+      header p {
+        margin: 10px 0 0 0;
+        color: #94a3b8;
+        font-size: 1.1rem;
+      }
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+      .download-section {
+        text-align: center;
+        margin-bottom: 50px;
+        background: #1e293b;
+        padding: 30px;
+        border-radius: 12px;
+        border: 1px solid #475569;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+      .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+      }
+      .btn-download,
+      .btn-github {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 16px 32px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+      .btn-download {
+        background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+        color: white;
+        box-shadow: 0 4px 14px rgba(3, 105, 161, 0.4);
+      }
+      .btn-download:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(3, 105, 161, 0.6);
+        background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+      }
+      .btn-github {
+        background: #334155;
+        color: white;
+        border: 1px solid #475569;
+      }
+      .btn-github:hover {
+        background: #475569;
+        transform: translateY(-2px);
+      }
+      .download-section p {
+        margin: 0;
+        color: #cbd5e1;
+        font-size: 0.95rem;
+      }
+      .section-title {
+        text-align: center;
+        font-size: 1.8rem;
+        color: #f1f5f9;
+        margin-bottom: 30px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background: #38bdf8;
+        border-radius: 2px;
+      }
 
-        /* Language Grid for Instructions */
+      /* Interactive Virtual Keyboard Representation */
+      .keyboard-wrapper {
+        background: #1e293b;
+        padding: 30px 20px;
+        border-radius: 16px;
+        border: 1px solid #334155;
+        margin-bottom: 5px;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        overflow-x: auto;
+      }
+      .keyboard {
+        min-width: 900px;
+        margin: 0 auto;
+        display: block;
+      }
+      .keyboard-row {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+        margin-bottom: 8px;
+      }
+      .key {
+        display: table-cell;
+        background: #334155;
+        border: 1px solid #1e293b;
+        color: #f1f5f9;
+        text-align: center;
+        vertical-align: middle;
+        height: 54px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 1.05rem;
+        box-shadow: 0 2px 0 #0f172a;
+        position: relative;
+      }
+      .key.special-kurd {
+        background: linear-gradient(135deg, #0369a1 0%, #1e3a8a 100%);
+        border: 1px solid #38bdf8;
+        color: #38bdf8;
+        font-size: 1.2rem;
+        text-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+      }
+      .key .eng-hint {
+        position: absolute;
+        top: 4px;
+        left: 6px;
+        font-size: 0.75rem;
+        color: #94a3b8;
+        font-weight: normal;
+        font-family: monospace;
+      }
+      .key.special-kurd .eng-hint {
+        color: #bae6fd;
+        opacity: 0.8;
+      }
+      .key.wide-2 {
+        width: 60px;
+      }
+      .key.wide-3 {
+        width: 85px;
+      }
+      .key.wide-4 {
+        width: 100px;
+      }
+      .key.wide-5 {
+        width: 125px;
+      }
+      .key.space {
+        width: 320px;
+        background: #475569;
+      }
+      .key .top-char {
+        display: block;
+        font-size: 0.8rem;
+        color: #94a3b8;
+        margin-bottom: 2px;
+      }
+      .key .bottom-char {
+        display: block;
+      }
+      .key.special-kurd .top-char {
+        color: #f1f5f9;
+      }
+      .keyboard-legend {
+        text-align: center;
+        margin: 15px 0 50px 0;
+        font-size: 0.95rem;
+        color: #94a3b8;
+      }
+      .legend-color {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        background: linear-gradient(135deg, #0369a1 0%, #1e3a8a 100%);
+        border: 1px solid #38bdf8;
+        border-radius: 4px;
+        margin-right: 6px;
+        vertical-align: middle;
+      }
+
+      /* Language Grid for Instructions */
+      .lang-grid {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: separate;
+        border-spacing: 20px;
+        margin-top: 20px;
+      }
+      .lang-card {
+        display: table-cell;
+        background: #1e293b;
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px solid #334155;
+        vertical-align: top;
+      }
+      .lang-card.rtl {
+        direction: rtl;
+      }
+      .lang-card h3 {
+        margin-top: 0;
+        color: #38bdf8;
+        border-bottom: 1px solid #334155;
+        padding-bottom: 10px;
+        font-size: 1.3rem;
+      }
+      .lang-card ol {
+        padding-left: 20px;
+        padding-right: 20px;
+        margin: 0;
+      }
+      .lang-card ol li {
+        margin-bottom: 12px;
+        color: #cbd5e1;
+      }
+      .lang-card ol li code {
+        background: #0f172a;
+        padding: 2px 6px;
+        border-radius: 4px;
+        color: #f43f5e;
+        font-family: monospace;
+      }
+      footer {
+        text-align: center;
+        padding: 30px;
+        margin-top: 60px;
+        border-top: 1px solid #334155;
+        color: #64748b;
+        font-size: 0.9rem;
+      }
+      @media (max-width: 850px) {
         .lang-grid {
-            display: table;
-            width: 100%;
-            table-layout: fixed;
-            border-collapse: separate;
-            border-spacing: 20px;
-            margin-top: 20px;
+          display: block;
         }
         .lang-card {
-            display: table-cell;
-            background: #1e293b;
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid #334155;
-            vertical-align: top;
+          display: block;
+          width: 100%;
+          margin-bottom: 20px;
         }
-        .lang-card.rtl {
-            direction: rtl;
-        }
-        .lang-card h3 {
-            margin-top: 0;
-            color: #38bdf8;
-            border-bottom: 1px solid #334155;
-            padding-bottom: 10px;
-            font-size: 1.3rem;
-        }
-        .lang-card ol {
-            padding-left: 20px;
-            padding-right: 20px;
-            margin: 0;
-        }
-        .lang-card ol li {
-            margin-bottom: 12px;
-            color: #cbd5e1;
-        }
-        .lang-card ol li code {
-            background: #0f172a;
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: #f43f5e;
-            font-family: monospace;
-        }
-        footer {
-            text-align: center;
-            padding: 30px;
-            margin-top: 60px;
-            border-top: 1px solid #334155;
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-        @media (max-width: 850px) {
-            .lang-grid { display: block; }
-            .lang-card { display: block; width: 100%; margin-bottom: 20px; }
-        }
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <header>
-        <h1>Kurdish Latin Keyboard Layout</h1>
-        <p>Nexşeya Klavyeya Kurdî ya Klasîk û Fermî ji bo Windowsê</p>
+      <h1>Kurdish Latin Keyboard Layout</h1>
+      <p>Nexşeya Klavyeya Kurdî ya Klasîk û Fermî ji bo Windowsê</p>
     </header>
 
     <div class="container">
-        
-        <!-- Action Download Section -->
-        <div class="download-section">
-            <div class="action-buttons">
-                <a href="https://github.com/Vorsynth/kurdish-latin-keyboard-layout/releases/latest/download/krlat_us.zip" class="btn-download">
-                    📥 Daxistin / تحميل / Download
-                </a>
-                <a href="https://github.com/Vorsynth/kurdish-latin-keyboard-layout" target="_blank" class="btn-github">
-                    ⭐ GitHub
-                </a>
+      <!-- Action Download Section -->
+      <div class="download-section">
+        <div class="action-buttons">
+        <a href="https://github.com/Kurdish-Tech/kurdish-kurmanci-keyboard-layout/releases/download/v1.0.0/KrLat_US.zip" class="btn-download">
+            📥 Daxistin / تحميل / Download
+        </a>
+          <a
+            href="https://github.com/Kurdish-Tech/kurdish-kurmanci-keyboard-layout"
+            target="_blank"
+            class="btn-github">
+            ⭐ GitHub
+          </a>
+        </div>
+        <p>Full Package installer compatible with Windows 10 & Windows 11</p>
+      </div>
+
+      <!-- Interactive Keyboard Representation Section -->
+      <h2 class="section-title">
+        Nexşeya Klavyeyê / تخطيط الأحرف / Keyboard Map
+      </h2>
+
+      <div class="keyboard-wrapper">
+        <div class="keyboard">
+          <!-- Row 1 -->
+          <div class="keyboard-row">
+            <div class="key">
+              <span class="top-char">~</span><span class="bottom-char">`</span>
             </div>
-            <p>Full Package installer compatible with Windows 10 & Windows 11</p>
+            <div class="key">
+              <span class="top-char">!</span><span class="bottom-char">1</span>
+            </div>
+            <div class="key">
+              <span class="top-char">@</span><span class="bottom-char">2</span>
+            </div>
+            <div class="key">
+              <span class="top-char">#</span><span class="bottom-char">3</span>
+            </div>
+            <div class="key">
+              <span class="top-char">$</span><span class="bottom-char">4</span>
+            </div>
+            <div class="key">
+              <span class="top-char">%</span><span class="bottom-char">5</span>
+            </div>
+            <div class="key">
+              <span class="top-char">^</span><span class="bottom-char">6</span>
+            </div>
+            <div class="key">
+              <span class="top-char">&</span><span class="bottom-char">7</span>
+            </div>
+            <div class="key">
+              <span class="top-char">*</span><span class="bottom-char">8</span>
+            </div>
+            <div class="key">
+              <span class="top-char">(</span><span class="bottom-char">9</span>
+            </div>
+            <div class="key">
+              <span class="top-char">)</span><span class="bottom-char">0</span>
+            </div>
+            <div class="key">
+              <span class="top-char">_</span><span class="bottom-char">-</span>
+            </div>
+            <div class="key">
+              <span class="top-char">+</span><span class="bottom-char">=</span>
+            </div>
+            <div class="key" style="width: 110px">Backspace</div>
+          </div>
+          <!-- Row 2 -->
+          <div class="keyboard-row">
+            <div class="key" style="width: 75px">Tab</div>
+            <div class="key">
+              <span class="top-char">Q</span><span class="bottom-char">q</span>
+            </div>
+            <div class="key">
+              <span class="top-char">W</span><span class="bottom-char">w</span>
+            </div>
+            <div class="key">
+              <span class="top-char">E</span><span class="bottom-char">e</span>
+            </div>
+            <div class="key">
+              <span class="top-char">R</span><span class="bottom-char">r</span>
+            </div>
+            <div class="key">
+              <span class="top-char">T</span><span class="bottom-char">t</span>
+            </div>
+            <div class="key">
+              <span class="top-char">Y</span><span class="bottom-char">y</span>
+            </div>
+            <div class="key">
+              <span class="top-char">U</span><span class="bottom-char">u</span>
+            </div>
+            <div class="key">
+              <span class="top-char">I</span><span class="bottom-char">i</span>
+            </div>
+            <div class="key">
+              <span class="top-char">O</span><span class="bottom-char">o</span>
+            </div>
+            <div class="key">
+              <span class="top-char">P</span><span class="bottom-char">p</span>
+            </div>
+            <div class="key special-kurd">
+              <span class="eng-hint">[</span><span class="top-char">Û</span
+              ><span class="bottom-char">û</span>
+            </div>
+            <div class="key special-kurd">
+              <span class="eng-hint">]</span><span class="top-char">Ş</span
+              ><span class="bottom-char">ş</span>
+            </div>
+            <div class="key special-kurd" style="width: 85px">
+              <span class="eng-hint">\</span><span class="top-char">Ç</span
+              ><span class="bottom-char">ç</span>
+            </div>
+          </div>
+          <!-- Row 3 -->
+          <div class="keyboard-row">
+            <div class="key" style="width: 95px">Caps Lock</div>
+            <div class="key">
+              <span class="top-char">A</span><span class="bottom-char">a</span>
+            </div>
+            <div class="key">
+              <span class="top-char">S</span><span class="bottom-char">s</span>
+            </div>
+            <div class="key">
+              <span class="top-char">D</span><span class="bottom-char">d</span>
+            </div>
+            <div class="key">
+              <span class="top-char">F</span><span class="bottom-char">f</span>
+            </div>
+            <div class="key">
+              <span class="top-char">G</span><span class="bottom-char">g</span>
+            </div>
+            <div class="key">
+              <span class="top-char">H</span><span class="bottom-char">h</span>
+            </div>
+            <div class="key">
+              <span class="top-char">J</span><span class="bottom-char">j</span>
+            </div>
+            <div class="key">
+              <span class="top-char">K</span><span class="bottom-char">k</span>
+            </div>
+            <div class="key">
+              <span class="top-char">L</span><span class="bottom-char">l</span>
+            </div>
+            <div class="key special-kurd">
+              <span class="eng-hint">;</span><span class="top-char">Ê</span
+              ><span class="bottom-char">ê</span>
+            </div>
+            <div class="key special-kurd">
+              <span class="eng-hint">'</span><span class="top-char">Î</span
+              ><span class="bottom-char">î</span>
+            </div>
+            <div class="key" style="width: 130px">Enter</div>
+          </div>
+          <!-- Row 4 -->
+          <div class="keyboard-row">
+            <div class="key" style="width: 125px">Shift</div>
+            <div class="key">
+              <span class="top-char">Z</span><span class="bottom-char">z</span>
+            </div>
+            <div class="key">
+              <span class="top-char">X</span><span class="bottom-char">x</span>
+            </div>
+            <div class="key">
+              <span class="top-char">C</span><span class="bottom-char">c</span>
+            </div>
+            <div class="key">
+              <span class="top-char">V</span><span class="bottom-char">v</span>
+            </div>
+            <div class="key">
+              <span class="top-char">B</span><span class="bottom-char">b</span>
+            </div>
+            <div class="key">
+              <span class="top-char">N</span><span class="bottom-char">n</span>
+            </div>
+            <div class="key">
+              <span class="top-char">M</span><span class="bottom-char">m</span>
+            </div>
+            <div class="key">
+              <span class="top-char">&lt;</span
+              ><span class="bottom-char">,</span>
+            </div>
+            <div class="key">
+              <span class="top-char">&gt;</span
+              ><span class="bottom-char">.</span>
+            </div>
+            <div class="key">
+              <span class="top-char">?</span><span class="bottom-char">/</span>
+            </div>
+            <div class="key" style="width: 160px">Shift</div>
+          </div>
+          <!-- Row 5 -->
+          <div class="keyboard-row">
+            <div class="key">Ctrl</div>
+            <div class="key">Win</div>
+            <div class="key">Alt</div>
+            <div class="key space">Space</div>
+            <div class="key">AltGr</div>
+            <div class="key">Win</div>
+            <div class="key">Menu</div>
+            <div class="key">Ctrl</div>
+          </div>
+        </div>
+      </div>
+      <div class="keyboard-legend">
+        <span class="legend-color"></span> Tîpên Taybet ên Kurdî (Ê, Î, Û, Ş, Ç)
+        li ser bişkojên hêmayan ( <strong>[ ] \ ; '</strong> ) hatine
+        bicihkirin.
+      </div>
+
+      <!-- 3-Language Detailed Instructions Grid -->
+      <h2 class="section-title">
+        Rêbernameya Sazkirinê / دليل التثبيت / Installation Guide
+      </h2>
+
+      <div class="lang-grid">
+        <!-- Kurdish Card -->
+        <div class="lang-card">
+          <h3>Bi Kurmancî</h3>
+          <ol>
+            <li>
+              Li jorê bitikînin ser bişkoja şîn a <strong>Daxistinê</strong>.
+            </li>
+            <li>Pelê <code>krlat_us.zip</code> daxînin ser komputera xwe.</li>
+            <li>Pelê zip vekin (Extract) û herin hundirê peldankê.</li>
+            <li>
+              Pelê <code>setup.exe</code> du caran bitikînin û sazkirinê
+              biqedînin.
+            </li>
+          </ol>
         </div>
 
-        <!-- Interactive Keyboard Representation Section -->
-        <h2 class="section-title">Nexşeya Klavyeyê / تخطيط الأحرف / Keyboard Map</h2>
-        
-        <div class="keyboard-wrapper">
-            <div class="keyboard">
-                <!-- Row 1 -->
-                <div class="keyboard-row">
-                    <div class="key"><span class="top-char">~</span><span class="bottom-char">`</span></div>
-                    <div class="key"><span class="top-char">!</span><span class="bottom-char">1</span></div>
-                    <div class="key"><span class="top-char">@</span><span class="bottom-char">2</span></div>
-                    <div class="key"><span class="top-char">#</span><span class="bottom-char">3</span></div>
-                    <div class="key"><span class="top-char">$</span><span class="bottom-char">4</span></div>
-                    <div class="key"><span class="top-char">%</span><span class="bottom-char">5</span></div>
-                    <div class="key"><span class="top-char">^</span><span class="bottom-char">6</span></div>
-                    <div class="key"><span class="top-char">&</span><span class="bottom-char">7</span></div>
-                    <div class="key"><span class="top-char">*</span><span class="bottom-char">8</span></div>
-                    <div class="key"><span class="top-char">(</span><span class="bottom-char">9</span></div>
-                    <div class="key"><span class="top-char">)</span><span class="bottom-char">0</span></div>
-                    <div class="key"><span class="top-char">_</span><span class="bottom-char">-</span></div>
-                    <div class="key"><span class="top-char">+</span><span class="bottom-char">=</span></div>
-                    <div class="key" style="width:110px;">Backspace</div>
-                </div>
-                <!-- Row 2 -->
-                <div class="keyboard-row">
-                    <div class="key" style="width:75px;">Tab</div>
-                    <div class="key"><span class="top-char">Q</span><span class="bottom-char">q</span></div>
-                    <div class="key"><span class="top-char">W</span><span class="bottom-char">w</span></div>
-                    <div class="key"><span class="top-char">E</span><span class="bottom-char">e</span></div>
-                    <div class="key"><span class="top-char">R</span><span class="bottom-char">r</span></div>
-                    <div class="key"><span class="top-char">T</span><span class="bottom-char">t</span></div>
-                    <div class="key"><span class="top-char">Y</span><span class="bottom-char">y</span></div>
-                    <div class="key"><span class="top-char">U</span><span class="bottom-char">u</span></div>
-                    <div class="key"><span class="top-char">I</span><span class="bottom-char">i</span></div>
-                    <div class="key"><span class="top-char">O</span><span class="bottom-char">o</span></div>
-                    <div class="key"><span class="top-char">P</span><span class="bottom-char">p</span></div>
-                    <div class="key special-kurd"><span class="eng-hint">[</span><span class="top-char">Û</span><span class="bottom-char">û</span></div>
-                    <div class="key special-kurd"><span class="eng-hint">]</span><span class="top-char">Ş</span><span class="bottom-char">ş</span></div>
-                    <div class="key special-kurd" style="width:85px;"><span class="eng-hint">\</span><span class="top-char">Ç</span><span class="bottom-char">ç</span></div>
-                </div>
-                <!-- Row 3 -->
-                <div class="keyboard-row">
-                    <div class="key" style="width:95px;">Caps Lock</div>
-                    <div class="key"><span class="top-char">A</span><span class="bottom-char">a</span></div>
-                    <div class="key"><span class="top-char">S</span><span class="bottom-char">s</span></div>
-                    <div class="key"><span class="top-char">D</span><span class="bottom-char">d</span></div>
-                    <div class="key"><span class="top-char">F</span><span class="bottom-char">f</span></div>
-                    <div class="key"><span class="top-char">G</span><span class="bottom-char">g</span></div>
-                    <div class="key"><span class="top-char">H</span><span class="bottom-char">h</span></div>
-                    <div class="key"><span class="top-char">J</span><span class="bottom-char">j</span></div>
-                    <div class="key"><span class="top-char">K</span><span class="bottom-char">k</span></div>
-                    <div class="key"><span class="top-char">L</span><span class="bottom-char">l</span></div>
-                    <div class="key special-kurd"><span class="eng-hint">;</span><span class="top-char">Ê</span><span class="bottom-char">ê</span></div>
-                    <div class="key special-kurd"><span class="eng-hint">'</span><span class="top-char">Î</span><span class="bottom-char">î</span></div>
-                    <div class="key" style="width:130px;">Enter</div>
-                </div>
-                <!-- Row 4 -->
-                <div class="keyboard-row">
-                    <div class="key" style="width:125px;">Shift</div>
-                    <div class="key"><span class="top-char">Z</span><span class="bottom-char">z</span></div>
-                    <div class="key"><span class="top-char">X</span><span class="bottom-char">x</span></div>
-                    <div class="key"><span class="top-char">C</span><span class="bottom-char">c</span></div>
-                    <div class="key"><span class="top-char">V</span><span class="bottom-char">v</span></div>
-                    <div class="key"><span class="top-char">B</span><span class="bottom-char">b</span></div>
-                    <div class="key"><span class="top-char">N</span><span class="bottom-char">n</span></div>
-                    <div class="key"><span class="top-char">M</span><span class="bottom-char">m</span></div>
-                    <div class="key"><span class="top-char">&lt;</span><span class="bottom-char">,</span></div>
-                    <div class="key"><span class="top-char">&gt;</span><span class="bottom-char">.</span></div>
-                    <div class="key"><span class="top-char">?</span><span class="bottom-char">/</span></div>
-                    <div class="key" style="width:160px;">Shift</div>
-                </div>
-                <!-- Row 5 -->
-                <div class="keyboard-row">
-                    <div class="key">Ctrl</div>
-                    <div class="key">Win</div>
-                    <div class="key">Alt</div>
-                    <div class="key space">Space</div>
-                    <div class="key">AltGr</div>
-                    <div class="key">Win</div>
-                    <div class="key">Menu</div>
-                    <div class="key">Ctrl</div>
-                </div>
-            </div>
-        </div>
-        <div class="keyboard-legend">
-            <span class="legend-color"></span> Tîpên Taybet ên Kurdî (Ê, Î, Û, Ş, Ç) li ser bişkojên hêmayan ( <strong>[ ] \ ; '</strong> ) hatine bicihkirin.
+        <!-- Arabic Card -->
+        <div class="lang-card rtl">
+          <h3>باللغة العربية</h3>
+          <ol>
+            <li>
+              انقر على زر <strong>التحميل</strong> الأزرق البارز في أعلى الصفحة.
+            </li>
+            <li>
+              قم بتحميل الملف المضغوط <code>krlat_us.zip</code> على جهازك.
+            </li>
+            <li>فك الضغط عن الملف المستلم وافتح المجلد الناتج.</li>
+            <li>
+              اضغط مرتين على ملف التثبيت <code>setup.exe</code> واتبع الخطوات
+              البسيطة لإتمام العملية.
+            </li>
+          </ol>
         </div>
 
-        <!-- 3-Language Detailed Instructions Grid -->
-        <h2 class="section-title">Rêbernameya Sazkirinê / دليل التثبيت / Installation Guide</h2>
-        
-        <div class="lang-grid">
-            
-            <!-- Kurdish Card -->
-            <div class="lang-card">
-                <h3>Bi Kurmancî</h3>
-                <ol>
-                    <li>Li jorê bitikînin ser bişkoja şîn a <strong>Daxistinê</strong>.</li>
-                    <li>Pelê <code>krlat_us.zip</code> daxînin ser komputera xwe.</li>
-                    <li>Pelê zip vekin (Extract) û herin hundirê peldankê.</li>
-                    <li>Pelê <code>setup.exe</code> du caran bitikînin û sazkirinê biqedînin.</li>
-                </ol>
-            </div>
-            
-            <!-- Arabic Card -->
-            <div class="lang-card rtl">
-                <h3>باللغة العربية</h3>
-                <ol>
-                    <li>انقر على زر <strong>التحميل</strong> الأزرق البارز في أعلى الصفحة.</li>
-                    <li>قم بتحميل الملف المضغوط <code>krlat_us.zip</code> على جهازك.</li>
-                    <li>فك الضغط عن الملف المستلم وافتح المجلد الناتج.</li>
-                    <li>اضغط مرتين على ملف التثبيت <code>setup.exe</code> واتبع الخطوات البسيطة لإتمام العملية.</li>
-                </ol>
-            </div>
-            
-            <!-- English Card -->
-            <div class="lang-card">
-                <h3>In English</h3>
-                <ol>
-                    <li>Click the blue <strong>Download</strong> button at the top of this page.</li>
-                    <li>Download the <code>krlat_us.zip</code> file onto your machine.</li>
-                    <li>Extract the downloaded zip archive and open the folder.</li>
-                    <li>Double-click on <code>setup.exe</code> and follow the prompt to finish.</li>
-                </ol>
-            </div>
-            
+        <!-- English Card -->
+        <div class="lang-card">
+          <h3>In English</h3>
+          <ol>
+            <li>
+              Click the blue <strong>Download</strong> button at the top of this
+              page.
+            </li>
+            <li>
+              Download the <code>krlat_us.zip</code> file onto your machine.
+            </li>
+            <li>Extract the downloaded zip archive and open the folder.</li>
+            <li>
+              Double-click on <code>setup.exe</code> and follow the prompt to
+              finish.
+            </li>
+          </ol>
         </div>
-
+      </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 KurdTech Initiative. Open Source Project dedicated to Kurdish digital heritage.</p>
+      <p>
+        &copy; 2026 KurdTech Initiative. Open Source Project dedicated to
+        Kurdish digital heritage.
+      </p>
     </footer>
-
-</body>
+  </body>
 </html>
