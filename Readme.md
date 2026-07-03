@@ -17,6 +17,7 @@ Ji bilî tîpên latînî yên standard, pênc tîpên taybet ên Kurmancî bi r
 
 الطباعة اللاتينية العادية تبقى كما هي، وتُضاف الحروف الكردية الخمسة الخاصة عبر مفتاح **AltGr** (ويندوز / لينكس) أو **Option ⌥** (ماك)، على نفس مواقع المفاتيح في الأنظمة الثلاثة:
 
+
 | Bişkoj / Key | Bêyî guherîn / عادي | + AltGr / Option | + Shift + AltGr / Option |
 |---|---|---|---|
 | `[` | `[` | `û` | `Û` |
