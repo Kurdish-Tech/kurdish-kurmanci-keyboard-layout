@@ -3,7 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kurdish Latin Keyboard Layout</title>
+    <meta
+      name="description"
+      content="Nexşeya klavyeya Kurmancî ya fermî (Kurdish-US) ji bo Windows, macOS û Linux — Official Kurdish Latin (Kurmanji) keyboard layout for Windows, macOS and Linux." />
+    <meta name="theme-color" content="#0f172a" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%8C%A8%EF%B8%8F%3C/text%3E%3C/svg%3E" />
+    <title>Kurdish Latin Keyboard Layout — Kurmancî</title>
     <style>
       *,
       *::before,
@@ -35,69 +42,35 @@
         color: #94a3b8;
         font-size: 1.1rem;
       }
+      .platform-badges {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+      .badge {
+        background: #0f172a;
+        border: 1px solid #334155;
+        color: #94a3b8;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
       .container {
         max-width: 1100px;
         margin: 0 auto;
         padding: 40px 20px;
       }
-      .download-section {
-        text-align: center;
-        margin-bottom: 50px;
-        background: #1e293b;
-        padding: 30px;
-        border-radius: 12px;
-        border: 1px solid #475569;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-      }
-      .action-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        flex-wrap: wrap;
-        margin-bottom: 15px;
-      }
-      .btn-download,
-      .btn-github {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        padding: 16px 32px;
-        font-size: 1.1rem;
-        font-weight: bold;
-        text-decoration: none;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-      }
-      .btn-download {
-        background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-        color: white;
-        box-shadow: 0 4px 14px rgba(3, 105, 161, 0.4);
-      }
-      .btn-download:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(3, 105, 161, 0.6);
-        background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
-      }
-      .btn-github {
-        background: #334155;
-        color: white;
-        border: 1px solid #475569;
-      }
-      .btn-github:hover {
-        background: #475569;
-        transform: translateY(-2px);
-      }
-      .download-section p {
-        margin: 0;
-        color: #cbd5e1;
-        font-size: 0.95rem;
-      }
       .section-title {
         text-align: center;
         font-size: 1.8rem;
         color: #f1f5f9;
-        margin-bottom: 30px;
+        margin-bottom: 10px;
         position: relative;
         padding-bottom: 10px;
       }
@@ -111,6 +84,12 @@
         height: 4px;
         background: #38bdf8;
         border-radius: 2px;
+      }
+      .section-sub {
+        text-align: center;
+        color: #94a3b8;
+        font-size: 0.95rem;
+        margin: 0 0 30px 0;
       }
 
       /* Interactive Virtual Keyboard Representation */
@@ -168,18 +147,6 @@
         color: #bae6fd;
         opacity: 0.8;
       }
-      .key.wide-2 {
-        width: 60px;
-      }
-      .key.wide-3 {
-        width: 85px;
-      }
-      .key.wide-4 {
-        width: 100px;
-      }
-      .key.wide-5 {
-        width: 125px;
-      }
       .key.space {
         width: 320px;
         background: #475569;
@@ -213,6 +180,150 @@
         vertical-align: middle;
       }
 
+      /* OS Tabs */
+      .os-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+      }
+      .os-tab {
+        background: #1e293b;
+        border: 1px solid #334155;
+        color: #cbd5e1;
+        padding: 13px 28px;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        font-family: inherit;
+        position: relative;
+      }
+      .os-tab:hover {
+        border-color: #38bdf8;
+        color: #f1f5f9;
+        transform: translateY(-1px);
+      }
+      .os-tab.active {
+        background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+        border-color: #38bdf8;
+        color: #fff;
+        box-shadow: 0 4px 14px rgba(3, 105, 161, 0.4);
+      }
+      .os-tab .recommended-dot {
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        background: #22c55e;
+        color: #052e16;
+        font-size: 0.65rem;
+        font-weight: 700;
+        padding: 2px 7px;
+        border-radius: 10px;
+        white-space: nowrap;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+      }
+
+      .os-panel {
+        display: none;
+      }
+      .os-panel.active {
+        display: block;
+        animation: fadeIn 0.35s ease;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .download-section {
+        text-align: center;
+        margin-bottom: 35px;
+        background: #1e293b;
+        padding: 30px;
+        border-radius: 12px;
+        border: 1px solid #475569;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+      .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+      }
+      .btn-download,
+      .btn-github,
+      .btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 16px 32px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+      .btn-download {
+        background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+        color: white;
+        box-shadow: 0 4px 14px rgba(3, 105, 161, 0.4);
+      }
+      .btn-download:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(3, 105, 161, 0.6);
+        background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+      }
+      .btn-github,
+      .btn-secondary {
+        background: #334155;
+        color: white;
+        border: 1px solid #475569;
+      }
+      .btn-github:hover,
+      .btn-secondary:hover {
+        background: #475569;
+        transform: translateY(-2px);
+      }
+      .download-section p.hint {
+        margin: 0;
+        color: #cbd5e1;
+        font-size: 0.95rem;
+      }
+
+      .note-box {
+        background: #1e293b;
+        border: 1px solid #334155;
+        border-left: 4px solid #f59e0b;
+        padding: 14px 20px;
+        border-radius: 8px;
+        margin: 25px 0;
+        color: #fcd34d;
+        font-size: 0.92rem;
+      }
+      .note-box strong {
+        color: #fde68a;
+      }
+      .note-box.rtl {
+        border-left: none;
+        border-right: 4px solid #f59e0b;
+        direction: rtl;
+        text-align: right;
+      }
+
       /* Language Grid for Instructions */
       .lang-grid {
         display: table;
@@ -220,7 +331,7 @@
         table-layout: fixed;
         border-collapse: separate;
         border-spacing: 20px;
-        margin-top: 20px;
+        margin-top: 10px;
       }
       .lang-card {
         display: table-cell;
@@ -229,6 +340,7 @@
         border-radius: 12px;
         border: 1px solid #334155;
         vertical-align: top;
+        width: 33.33%;
       }
       .lang-card.rtl {
         direction: rtl;
@@ -255,7 +367,37 @@
         border-radius: 4px;
         color: #f43f5e;
         font-family: monospace;
+        word-break: break-all;
       }
+      .lang-card pre {
+        background: #0f172a;
+        border: 1px solid #334155;
+        border-radius: 8px;
+        padding: 12px 14px;
+        overflow-x: auto;
+        margin: 8px 0 14px 0;
+      }
+      .lang-card pre code {
+        background: none;
+        padding: 0;
+        color: #4ade80;
+        font-family: "Consolas", monospace;
+        font-size: 0.85rem;
+        word-break: normal;
+      }
+      .more-link {
+        display: block;
+        text-align: center;
+        margin-top: 25px;
+        color: #38bdf8;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+      .more-link:hover {
+        text-decoration: underline;
+      }
+
       footer {
         text-align: center;
         padding: 30px;
@@ -264,6 +406,14 @@
         color: #64748b;
         font-size: 0.9rem;
       }
+      footer a {
+        color: #38bdf8;
+        text-decoration: none;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+
       @media (max-width: 850px) {
         .lang-grid {
           display: block;
@@ -273,36 +423,31 @@
           width: 100%;
           margin-bottom: 20px;
         }
+        .keyboard {
+          min-width: 700px;
+        }
       }
     </style>
   </head>
   <body>
     <header>
-      <h1>Kurdish Latin Keyboard Layout</h1>
-      <p>Nexşeya Klavyeya Kurdî ya Klasîk û Fermî ji bo Windowsê</p>
+      <h1>⌨️ Kurdish Latin Keyboard Layout</h1>
+      <p>Nexşeya Klavyeya Kurmancî ya Klasîk û Fermî ji bo Windows, macOS û Linux</p>
+      <div class="platform-badges">
+        <span class="badge">🪟 Windows 10 / 11</span>
+        <span class="badge">🍎 macOS</span>
+        <span class="badge">🐧 Linux (X11)</span>
+      </div>
     </header>
 
     <div class="container">
-      <!-- Action Download Section -->
-      <div class="download-section">
-        <div class="action-buttons">
-        <a href="https://github.com/Kurdish-Tech/kurdish-kurmanci-keyboard-layout/releases/download/v1.0.0/KrLat_US.zip" class="btn-download">
-            📥 Daxistin / تحميل / Download
-        </a>
-          <a
-            href="https://github.com/Kurdish-Tech/kurdish-kurmanci-keyboard-layout"
-            target="_blank"
-            class="btn-github">
-            ⭐ GitHub
-          </a>
-        </div>
-        <p>Full Package installer compatible with Windows 10 & Windows 11</p>
-      </div>
-
       <!-- Interactive Keyboard Representation Section -->
       <h2 class="section-title">
         Nexşeya Klavyeyê / تخطيط الأحرف / Keyboard Map
       </h2>
+      <p class="section-sub">
+        Heman nexşe li ser her sê pergalan kar dike / نفس التخطيط يعمل على الأنظمة الثلاثة
+      </p>
 
       <div class="keyboard-wrapper">
         <div class="keyboard">
@@ -478,7 +623,7 @@
             <div class="key">Win</div>
             <div class="key">Alt</div>
             <div class="key space">Space</div>
-            <div class="key">AltGr</div>
+            <div class="key" id="altgr-key">AltGr</div>
             <div class="key">Win</div>
             <div class="key">Menu</div>
             <div class="key">Ctrl</div>
@@ -487,76 +632,334 @@
       </div>
       <div class="keyboard-legend">
         <span class="legend-color"></span> Tîpên Taybet ên Kurdî (Ê, Î, Û, Ş, Ç)
-        li ser bişkojên hêmayan ( <strong>[ ] \ ; '</strong> ) hatine
-        bicihkirin.
+        li ser bişkojên hêmayan (<strong>[ ] \ ; '</strong>) bi riya
+        <strong>AltGr</strong> (Windows/Linux) an <strong>Option ⌥</strong>
+        (macOS) têne çalakirin.
       </div>
 
-      <!-- 3-Language Detailed Instructions Grid -->
+      <!-- OS-based Install Guide -->
       <h2 class="section-title">
         Rêbernameya Sazkirinê / دليل التثبيت / Installation Guide
       </h2>
+      <p class="section-sub" id="os-detect-msg">
+        Pergala xwe hilbijêrin / اختر نظام التشغيل الخاص بك / Choose your operating system
+      </p>
 
-      <div class="lang-grid">
-        <!-- Kurdish Card -->
-        <div class="lang-card">
-          <h3>Bi Kurmancî</h3>
-          <ol>
-            <li>
-              Li jorê bitikînin ser bişkoja şîn a <strong>Daxistinê</strong>.
-            </li>
-            <li>Pelê <code>krlat_us.zip</code> daxînin ser komputera xwe.</li>
-            <li>Pelê zip vekin (Extract) û herin hundirê peldankê.</li>
-            <li>
-              Pelê <code>setup.exe</code> du caran bitikînin û sazkirinê
-              biqedînin.
-            </li>
-          </ol>
-        </div>
-
-        <!-- Arabic Card -->
-        <div class="lang-card rtl">
-          <h3>باللغة العربية</h3>
-          <ol>
-            <li>
-              انقر على زر <strong>التحميل</strong> الأزرق البارز في أعلى الصفحة.
-            </li>
-            <li>
-              قم بتحميل الملف المضغوط <code>krlat_us.zip</code> على جهازك.
-            </li>
-            <li>فك الضغط عن الملف المستلم وافتح المجلد الناتج.</li>
-            <li>
-              اضغط مرتين على ملف التثبيت <code>setup.exe</code> واتبع الخطوات
-              البسيطة لإتمام العملية.
-            </li>
-          </ol>
-        </div>
-
-        <!-- English Card -->
-        <div class="lang-card">
-          <h3>In English</h3>
-          <ol>
-            <li>
-              Click the blue <strong>Download</strong> button at the top of this
-              page.
-            </li>
-            <li>
-              Download the <code>krlat_us.zip</code> file onto your machine.
-            </li>
-            <li>Extract the downloaded zip archive and open the folder.</li>
-            <li>
-              Double-click on <code>setup.exe</code> and follow the prompt to
-              finish.
-            </li>
-          </ol>
-        </div>
+      <div class="os-tabs" role="tablist">
+        <button class="os-tab active" data-os="windows" role="tab" aria-selected="true">
+          🪟 Windows
+        </button>
+        <button class="os-tab" data-os="macos" role="tab" aria-selected="false">
+          🍎 macOS
+        </button>
+        <button class="os-tab" data-os="linux" role="tab" aria-selected="false">
+          🐧 Linux
+        </button>
       </div>
+
+      <!-- ===== WINDOWS PANEL ===== -->
+      <div class="os-panel active" id="panel-windows">
+        <div class="download-section">
+          <div class="action-buttons">
+            <a
+              href="https://github.com/Kurdish-Tech/kurdish-kurmanci-keyboard-layout/releases/download/v1.0.0/KrLat_US.zip"
+              class="btn-download">
+              📥 Daxistin / تحميل / Download
+            </a>
+            <a
+              href="https://github.com/Kurdish-Tech/kurdish-kurmanci-keyboard-layout/tree/main/windows"
+              target="_blank"
+              class="btn-secondary">
+              📁 windows/ (amd64, i386, ia64, wow64)
+            </a>
+          </div>
+          <p class="hint">Full Package installer compatible with Windows 10 & Windows 11</p>
+        </div>
+
+        <div class="lang-grid">
+          <div class="lang-card">
+            <h3>Bi Kurmancî</h3>
+            <ol>
+              <li>Li jorê bitikînin ser bişkoja şîn a <strong>Daxistinê</strong>.</li>
+              <li>Pelê <code>krlat_us.zip</code> daxînin ser komputera xwe.</li>
+              <li>Pelê zip vekin (Extract) û herin hundirê peldankê.</li>
+              <li>Pelê <code>setup.exe</code> du caran bitikînin û sazkirinê biqedînin.</li>
+            </ol>
+          </div>
+
+          <div class="lang-card rtl">
+            <h3>باللغة العربية</h3>
+            <ol>
+              <li>انقر على زر <strong>التحميل</strong> الأزرق البارز في أعلى الصفحة.</li>
+              <li>قم بتحميل الملف المضغوط <code>krlat_us.zip</code> على جهازك.</li>
+              <li>فك الضغط عن الملف المستلم وافتح المجلد الناتج.</li>
+              <li>اضغط مرتين على ملف التثبيت <code>setup.exe</code> واتبع الخطوات البسيطة لإتمام العملية.</li>
+            </ol>
+          </div>
+
+          <div class="lang-card">
+            <h3>In English</h3>
+            <ol>
+              <li>Click the blue <strong>Download</strong> button above.</li>
+              <li>Download the <code>krlat_us.zip</code> file onto your machine.</li>
+              <li>Extract the downloaded zip archive and open the folder.</li>
+              <li>Double-click <code>setup.exe</code> and follow the prompt to finish.</li>
+            </ol>
+          </div>
+        </div>
+        <a
+          class="more-link"
+          href="https://github.com/Kurdish-Tech/kurdish-kurmanci-keyboard-layout/blob/main/windows/README.md"
+          target="_blank">
+          Zêdetir / المزيد من التفاصيل / More details (windows/README.md) →
+        </a>
+      </div>
+
+      <!-- ===== MACOS PANEL ===== -->
+      <div class="os-panel" id="panel-macos">
+        <div class="download-section">
+          <div class="action-buttons">
+            <a
+              href="https://raw.githubusercontent.com/Kurdish-Tech/kurdish-kurmanci-keyboard-layout/main/macos/Kurmanci.bundle/Contents/Resources/Kurmanci.keylayout"
+              class="btn-download"
+              download>
+              📥 Daxistin / تحميل / Download (.keylayout)
+            </a>
+            <a
+              href="https://github.com/Kurdish-Tech/kurdish-kurmanci-keyboard-layout/tree/main/macos"
+              target="_blank"
+              class="btn-secondary">
+              📁 macos/ (Kurmanci.bundle)
+            </a>
+          </div>
+          <p class="hint">Single-file layout — no compiling required</p>
+        </div>
+
+        <div class="note-box">
+          <strong>Not / ملاحظة:</strong> Kurdî li ser macOS bi bişkoja
+          <strong>Option (⌥)</strong> tê çalakirin, ne AltGr. Cih heman in:
+          <code>[ ] \ ; '</code>.
+        </div>
+
+        <div class="lang-grid">
+          <div class="lang-card">
+            <h3>Bi Kurmancî</h3>
+            <ol>
+              <li>Pelê <code>Kurmanci.keylayout</code> daxînin (bişkoja jorîn).</li>
+              <li>
+                Pelê bikişînin nav peldanka
+                <code>~/Library/Keyboard Layouts/</code> (di Finder de:
+                <strong>Go → Go to Folder…</strong>, ev rê binivîsin; heke
+                peldank tune be, wê biafirînin).
+              </li>
+              <li>Derkevin û dîsa têkevin hesabê xwe (Log out / Log in).</li>
+              <li>
+                Herin <strong>System Settings → Keyboard → Input Sources →
+                Edit… → +</strong>, lêgerînê bikin <strong>Kurmancî</strong> û
+                zêde bikin.
+              </li>
+            </ol>
+          </div>
+
+          <div class="lang-card rtl">
+            <h3>باللغة العربية</h3>
+            <ol>
+              <li>حمّل ملف <code>Kurmanci.keylayout</code> من الزر أعلاه.</li>
+              <li>
+                انسخ الملف إلى المجلد <code>~/Library/Keyboard Layouts/</code>
+                (من Finder: <strong>Go → Go to Folder…</strong> واكتب هذا
+                المسار، وأنشئ المجلد إن لم يكن موجوداً).
+              </li>
+              <li>سجّل الخروج ثم أعد تسجيل الدخول.</li>
+              <li>
+                اذهب إلى <strong>System Settings → Keyboard → Input Sources →
+                Edit… → +</strong>، ابحث عن <strong>Kurmancî</strong> وأضفه.
+              </li>
+            </ol>
+          </div>
+
+          <div class="lang-card">
+            <h3>In English</h3>
+            <ol>
+              <li>Download <code>Kurmanci.keylayout</code> using the button above.</li>
+              <li>
+                Copy the file into <code>~/Library/Keyboard Layouts/</code>
+                (in Finder: <strong>Go → Go to Folder…</strong>, paste this
+                path, creating the folder if needed).
+              </li>
+              <li>Log out and log back in.</li>
+              <li>
+                Go to <strong>System Settings → Keyboard → Input Sources →
+                Edit… → +</strong>, search for <strong>Kurmancî</strong> and
+                add it.
+              </li>
+            </ol>
+          </div>
+        </div>
+        <a
+          class="more-link"
+          href="https://github.com/Kurdish-Tech/kurdish-kurmanci-keyboard-layout/blob/main/macos/README.md"
+          target="_blank">
+          Zêdetir (avakirina .pkg/.dmg) / المزيد (بناء حزمة .pkg/.dmg) / More (build a .pkg/.dmg) →
+        </a>
+      </div>
+
+      <!-- ===== LINUX PANEL ===== -->
+      <div class="os-panel" id="panel-linux">
+        <div class="download-section">
+          <div class="action-buttons">
+            <a
+              href="https://raw.githubusercontent.com/Kurdish-Tech/kurdish-kurmanci-keyboard-layout/main/linux/xkb/symbols/ku"
+              class="btn-download"
+              download>
+              📥 Daxistin / تحميل / Download (XKB symbols)
+            </a>
+            <a
+              href="https://github.com/Kurdish-Tech/kurdish-kurmanci-keyboard-layout/tree/main/linux"
+              target="_blank"
+              class="btn-secondary">
+              📁 linux/ (.deb / .rpm guide)
+            </a>
+          </div>
+          <p class="hint">XKB symbols file — works on any X11 desktop (GNOME, KDE, XFCE…)</p>
+        </div>
+
+        <div class="note-box">
+          <strong>Not / ملاحظة:</strong> Gelek dabeşan jixwe pelekî bi navê
+          <code>ku</code> tînin (Soranî). Wî pelî rasterast neguherînin —
+          vê pelê bi navekî cuda (<code>kumr</code>) saz bikin, wekî li jêr
+          hatiye destnîşankirin.
+        </div>
+
+        <div class="lang-grid">
+          <div class="lang-card">
+            <h3>Bi Kurmancî</h3>
+            <ol>
+              <li>Pelê XKB daxînin (bişkoja jorîn).</li>
+              <li>
+                Bi termînalê wê kopî bikin:
+                <pre><code>sudo cp ku /usr/share/X11/xkb/symbols/kumr</code></pre>
+              </li>
+              <li>
+                Ji bo ceribandinê tavilê çalak bikin:
+                <pre><code>setxkbmap -layout kumr -variant basic</code></pre>
+              </li>
+              <li>Ji bo sazkirina daîmî û pakêtên .deb/.rpm, li linux/README.md binêrin.</li>
+            </ol>
+          </div>
+
+          <div class="lang-card rtl">
+            <h3>باللغة العربية</h3>
+            <ol>
+              <li>حمّل ملف XKB من الزر أعلاه.</li>
+              <li>
+                انسخه عبر الطرفية (Terminal):
+                <pre><code>sudo cp ku /usr/share/X11/xkb/symbols/kumr</code></pre>
+              </li>
+              <li>
+                فعّله مباشرة للتجربة:
+                <pre><code>setxkbmap -layout kumr -variant basic</code></pre>
+              </li>
+              <li>للتثبيت الدائم وبناء حزم .deb/.rpm، راجع linux/README.md.</li>
+            </ol>
+          </div>
+
+          <div class="lang-card">
+            <h3>In English</h3>
+            <ol>
+              <li>Download the XKB file using the button above.</li>
+              <li>
+                Copy it via terminal:
+                <pre><code>sudo cp ku /usr/share/X11/xkb/symbols/kumr</code></pre>
+              </li>
+              <li>
+                Activate it immediately to test:
+                <pre><code>setxkbmap -layout kumr -variant basic</code></pre>
+              </li>
+              <li>For permanent setup and .deb/.rpm packages, see linux/README.md.</li>
+            </ol>
+          </div>
+        </div>
+        <a
+          class="more-link"
+          href="https://github.com/Kurdish-Tech/kurdish-kurmanci-keyboard-layout/blob/main/linux/README.md"
+          target="_blank">
+          Zêdetir (evdev.xml, .deb, .rpm) / المزيد / More details (linux/README.md) →
+        </a>
+      </div>
+
+      <a
+        href="https://github.com/Kurdish-Tech/kurdish-kurmanci-keyboard-layout"
+        target="_blank"
+        style="display: block; text-align: center; margin-top: 45px">
+        <span
+          class="btn-github"
+          style="display: inline-flex">
+          ⭐ Binêrin li ser GitHub / View on GitHub
+        </span>
+      </a>
     </div>
 
     <footer>
       <p>
-        &copy; 2026 KurdTech Initiative. Open Source Project dedicated to
-        Kurdish digital heritage.
+        &copy; 2026 Kurdish Tech Organization. Open Source Project dedicated
+        to Kurdish digital heritage.
+      </p>
+      <p>
+        <a href="https://github.com/Kurdish-Tech/kurdish-kurmanci-keyboard-layout" target="_blank">GitHub</a>
+        ·
+        <a href="https://github.com/Kurdish-Tech/kurdish-kurmanci-keyboard-layout/issues" target="_blank">Issues</a>
       </p>
     </footer>
+
+    <script>
+      (function () {
+        var tabs = document.querySelectorAll(".os-tab");
+        var panels = {
+          windows: document.getElementById("panel-windows"),
+          macos: document.getElementById("panel-macos"),
+          linux: document.getElementById("panel-linux"),
+        };
+        var altgrKey = document.getElementById("altgr-key");
+
+        function activate(os) {
+          tabs.forEach(function (t) {
+            var isMatch = t.getAttribute("data-os") === os;
+            t.classList.toggle("active", isMatch);
+            t.setAttribute("aria-selected", isMatch ? "true" : "false");
+          });
+          Object.keys(panels).forEach(function (key) {
+            panels[key].classList.toggle("active", key === os);
+          });
+          if (altgrKey) {
+            altgrKey.textContent = os === "macos" ? "Option" : "AltGr";
+          }
+        }
+
+        tabs.forEach(function (tab) {
+          tab.addEventListener("click", function () {
+            activate(tab.getAttribute("data-os"));
+          });
+        });
+
+        // Auto-detect the visitor's OS and pre-select the matching tab.
+        var ua = navigator.userAgent || "";
+        var detected = "windows";
+        if (/Mac OS X|Macintosh/i.test(ua)) {
+          detected = "macos";
+        } else if (/Linux/i.test(ua) && !/Android/i.test(ua)) {
+          detected = "linux";
+        }
+        activate(detected);
+
+        var detectedTab = document.querySelector('.os-tab[data-os="' + detected + '"]');
+        if (detectedTab) {
+          var dot = document.createElement("span");
+          dot.className = "recommended-dot";
+          dot.textContent = "✓";
+          detectedTab.appendChild(dot);
+        }
+      })();
+    </script>
   </body>
 </html>

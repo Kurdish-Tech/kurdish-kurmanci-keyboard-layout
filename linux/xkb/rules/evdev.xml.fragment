@@ -1,0 +1,29 @@
+<!--
+  Fragment to merge into /usr/share/X11/xkb/rules/evdev.xml (and evdev.lst)
+  so "Kurdish (Kurmanji, Latin, Kurdish-US)" shows up in desktop input-source
+  pickers (GNOME Settings, KDE System Settings, etc.).
+
+  This is NOT a standalone file — do not replace evdev.xml with it.
+  See linux/README.md for the exact merge steps.
+-->
+
+<!-- If a <layout> block with <name>ku</name> already exists, add this
+     <variant> entry inside its <variantList> instead of duplicating the layout. -->
+<layout>
+  <configItem>
+    <name>ku</name>
+    <shortDescription>ku</shortDescription>
+    <description>Kurdish (Kurmanji, Latin, Kurdish-US)</description>
+    <languageList>
+      <iso639Id>kur</iso639Id>
+    </languageList>
+  </configItem>
+  <variantList>
+    <variant>
+      <configItem>
+        <name>kurmanci</name>
+        <description>Kurdish (Kurmanji, Latin, Kurdish-US, AltGr special letters)</description>
+      </configItem>
+    </variant>
+  </variantList>
+</layout>

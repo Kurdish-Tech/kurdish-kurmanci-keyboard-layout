@@ -1,0 +1,37 @@
+// Kurmancî (Kurdish Latin) — "Kurdish-US" XKB symbols file
+// Kurdish Tech Organization — https://github.com/Kurdish-Tech/kurdish-kurmanci-keyboard-layout
+//
+// Mirrors the official Windows "Kurdish-US" (krlat_us) layout: base and
+// Shift levels are standard US QWERTY, and AltGr (Level 3) adds the five
+// Kurmancî-specific Latin letters on the same physical keys:
+//   [ -> û / Û      ] -> ş / Ş      \ -> ç / Ç      ; -> ê / Ê      ' -> î / Î
+//
+// Install path on most distros: /usr/share/X11/xkb/symbols/ku
+// NOTE: many distributions already ship a "ku" file (Kurdish Sorani,
+// Arabic script) as part of xkeyboard-config. See linux/README.md for how
+// to install this safely alongside it instead of overwriting a system file.
+
+default partial alphanumeric_keys
+xkb_symbols "basic" {
+
+    include "us(basic)"
+
+    name[Group1]= "Kurdish (Kurmanji, Latin, Kurdish-US)";
+
+    key <AD11> { [ bracketleft,  braceleft,  ucircumflex, Ucircumflex ] }; // [ { û Û
+    key <AD12> { [ bracketright, braceright, scedilla,    Scedilla    ] }; // ] } ş Ş
+    key <BKSL> { [ backslash,    bar,        ccedilla,    Ccedilla    ] }; // \ | ç Ç
+    key <AC10> { [ semicolon,    colon,      ecircumflex, Ecircumflex ] }; // ; : ê Ê
+    key <AC11> { [ apostrophe,   quotedbl,   icircumflex, Icircumflex ] }; // ' " î Î
+
+    include "level3(ralt_switch)"
+};
+
+// Alias kept for clarity when this file is merged into an existing
+// distro-provided "ku" symbols file as an additional variant:
+//   setxkbmap -layout ku -variant kurmanci
+partial alphanumeric_keys
+xkb_symbols "kurmanci" {
+    include "ku(basic)"
+    name[Group1]= "Kurdish (Kurmanji, Latin, Kurdish-US)";
+};
