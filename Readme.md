@@ -1,6 +1,6 @@
 # ⌨️ Kurdish Latin (Kurmancî / Kurdish-US) Keyboard Layout
 
-Tekşeya klavyeya Kurmancî ya klasîk û fermî — ji bo Windows, macOS, û Linux.
+Nekşeya klavyeya Kurmancî ya klasîk û fermî — ji bo Windows, macOS, û Linux.
 تخطيط لوحة المفاتيح الكردية اللاتينية (الكرمانجية) الرسمي — لأنظمة ويندوز، ماك، ولينكس.
 
 ---
